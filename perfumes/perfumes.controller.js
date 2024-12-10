@@ -37,9 +37,20 @@ const getPefumeByName = async(req,res)=>{
 
 
 }
-
+const updatePerfume = async (req,res)=>{
+    const { name } = req.params;
+    const {description} = req.body
+    try {
+      const perfume = await PerfumeService.updatePerfume(name,description);
+      res.status(200).json(perfume);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+}
 module.exports = {
     createPerfume,
     getPerfume,
-    getPefumeByName
+    getPefumeByName,
+    updatePerfume
+
 }

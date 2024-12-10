@@ -1,11 +1,7 @@
 const mongoose = require("mongoose");
 
-const PerfumeSchema = new mongoose.Schema({
+const PerfumeWaxSchema = new mongoose.Schema({
   name: {
-    type: String,
-    required: true,
-  },
-  type: {
     type: String,
     required: true,
   },
@@ -31,15 +27,6 @@ const PerfumeSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
-      top_notes: {
-        type: String,
-      },
-      heart_notes: {
-        type: String,
-      },
-      base_notes: {
-        type: String,
-      },
       img1:{
         type:String
       },
@@ -50,4 +37,4 @@ const PerfumeSchema = new mongoose.Schema({
   ],
 });
 
-module.exports = mongoose.model("Perfume", PerfumeSchema);
+module.exports = mongoose.model("PerfumeWax", PerfumeWaxSchema);

@@ -1,29 +1,38 @@
-const Perfume = require("../models/Perfumes")
+const Perfume = require("../models/Perfumes");
 
-const createPerfume = async (req)=>{
-    const {name,type,gender,sizes} = req.body
-    // console.log("name",name)
-    // console.log("name",sizes)
+const createPerfume = async (req) => {
+  const { name, type, gender, sizes, description } = req.body;
+  // console.log("name",name)
+  // console.log("name",sizes)
 
-    const perfume  = Perfume.create({
-        name,
-        type,
-        gender,
-        sizes
-    })
+  const perfume = Perfume.create({
+    name,
+    type,
+    gender,
+    sizes,
+    description,
+  });
 
-    return perfume
+  return perfume;
+};
+const getPerfume = () => {
+  return Perfume.find();
+};
+const getPefumeByName = (name) => {
+  return Perfume.findOne({ name });
+};
 
-}
-const getPerfume = ()=>{
-    return Perfume.find()
-}
-const getPefumeByName = (name)=>{
-    return Perfume.findOne({name})
-}
+const updatePerfume = (name, description) => {
+  return Perfume.findOneAndUpdate(
+    { name },
+    { $set: { description } }, 
+    { new: true }
+  );
+};
 
 module.exports = {
-    createPerfume,
-    getPerfume,
-    getPefumeByName
-}
+  createPerfume,
+  getPerfume,
+  getPefumeByName,
+  updatePerfume
+};
