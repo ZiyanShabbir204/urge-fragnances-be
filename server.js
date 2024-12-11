@@ -6,6 +6,7 @@ var cors = require("cors");
 const perfumeRoutes = require("./routes/perfume.route")
 const scentedCandleRoute = require("./routes/scented-candle.route")
 const perfumeWaxRoute = require("./routes/perfume-wax.route")
+const orderRoute = require("./routes/order.route")
 
 dotenv.config();
 connectDB();
@@ -24,6 +25,7 @@ app.use(cors(corsOptions));
 app.use("/api/perfumes",perfumeRoutes)
 app.use("/api/scented-candles",scentedCandleRoute)
 app.use("/api/perfume-wax",perfumeWaxRoute)
+app.use("/api/order",orderRoute)
 app.listen(PORT,()=>{
     console.log(`Server running on port ${PORT}`)
 })

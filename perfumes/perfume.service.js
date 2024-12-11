@@ -30,9 +30,15 @@ const updatePerfume = (name, description) => {
   );
 };
 
+const getPerfumeCategory = (gender)=>{
+  return Perfume.find({gender})
+
+}
+
 module.exports = {
   createPerfume,
   getPerfume,
   getPefumeByName,
-  updatePerfume
+  updatePerfume,
+  getPerfumeCategory
 };
