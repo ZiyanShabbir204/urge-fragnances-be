@@ -15,8 +15,9 @@ const createPerfume = async (req) => {
 
   return perfume;
 };
-const getPerfume = () => {
-  return Perfume.find();
+const getPerfume = (gender) => {
+  
+  return gender? Perfume.find({gender}) :  Perfume.find();
 };
 const getPefumeByName = (name) => {
   return Perfume.findOne({ name });
@@ -30,15 +31,15 @@ const updatePerfume = (name, description) => {
   );
 };
 
-const getPerfumeCategory = (gender)=>{
-  return Perfume.find({gender})
+// const getPerfumeCategory = (gender)=>{
+//   return Perfume.find({gender})
 
-}
+// }
 
 module.exports = {
   createPerfume,
   getPerfume,
   getPefumeByName,
   updatePerfume,
-  getPerfumeCategory
+  
 };

@@ -9,23 +9,24 @@ const createPerfume = async (req, res) => {
   }
 };
 const getPerfume = async (req, res) => {
+    const {gender} = req.query
   try {
-    const perfumes = await PerfumeService.getPerfume();
+    const perfumes = await PerfumeService.getPerfume(gender);
     res.status(200).json(perfumes);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-const getPerfumeCategory = async (req, res) => {
-  const { gender } = req.query;
-  try {
-    const perfumes = await PerfumeService.getPerfumeCategory(gender);
-    res.status(200).json(perfumes);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+// const getPerfumeCategory = async (req, res) => {
+//   const { gender } = req.query;
+//   try {
+//     const perfumes = await PerfumeService.getPerfumeCategory(gender);
+//     res.status(200).json(perfumes);
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// };
 
 const getPefumeByName = async (req, res) => {
   const { name } = req.params;
@@ -51,5 +52,4 @@ module.exports = {
   getPerfume,
   getPefumeByName,
   updatePerfume,
-  getPerfumeCategory,
 };
