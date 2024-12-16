@@ -66,7 +66,7 @@ Best regards,
 Your Website
 `;
 
-    sendMailEnQueue("zayanirfan8@gmail.com", message);
+    sendMailEnQueue("eaxee.info@gmail.com", message);
     sendMailEnQueue("ziyanshabbir25@gmail.com", message);
 
     // await sendEmail("zayanirfan8@gmail.com","Order has been booked","text")
