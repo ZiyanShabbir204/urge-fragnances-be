@@ -7,9 +7,11 @@ const perfumeRoutes = require("./routes/perfume.route")
 const scentedCandleRoute = require("./routes/scented-candle.route")
 const perfumeWaxRoute = require("./routes/perfume-wax.route")
 const orderRoute = require("./routes/order.route")
+const {initMailer} = require("./nodemailer/send-email")
 
 dotenv.config();
 connectDB();
+initMailer();
 
 const app = express();
 const PORT = process.env.PORT || 5000;

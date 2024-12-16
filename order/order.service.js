@@ -1,17 +1,15 @@
 const Order = require("../models/Order");
 
-const createOrder = async (req) => {
-  const {
-    address,
-    city,
-    country,
-    email,
-    firstName,
-    lastName,
-    paymentMethod,
-    phoneNumber,
-    postalCode,
-  } = req.body;
+const createOrder = async (address,
+  city,
+  country,
+  email,
+  firstName,
+  lastName,
+  paymentMethod,
+  phoneNumber,
+  postalCode,products,totalBill) => {
+  
   const order = await Order.create({
     address,
     city,
@@ -22,6 +20,9 @@ const createOrder = async (req) => {
     paymentMethod,
     phoneNumber,
     postalCode,
+    products,
+    totalBill
+
   });
 
   return order
