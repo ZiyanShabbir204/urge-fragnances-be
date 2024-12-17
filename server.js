@@ -23,6 +23,9 @@ const corsOptions = {
   credentials: true,
   origin: whiteList,
 };
+app.get("/check-me", (_, res) => {
+  res.json({ message: `Hello World!` });
+});
 app.use(cors(corsOptions));
 app.use("/api/perfumes",perfumeRoutes)
 app.use("/api/scented-candles",scentedCandleRoute)
