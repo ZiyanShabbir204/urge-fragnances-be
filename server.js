@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cookieParser());
-const whiteList = ["http://localhost:5173", "http://localhost:5174"];
+const whiteList = ["http://localhost:5173", "http://localhost:5174","https://urgefragrances.com"];
 const corsOptions = {
   credentials: true,
   origin: whiteList,
