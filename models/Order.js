@@ -2,6 +2,20 @@ const mongoose = require("mongoose");
 
 // Define a sub-schema for products
 const productSchema = new mongoose.Schema({
+  productId: {
+    type: mongoose.Schema.Types.ObjectId,
+    refPath: "type", // Dynamically reference the collection based on "type"
+    required: true,
+  },
+  sizeId: {
+    type: mongoose.Schema.Types.ObjectId, // The ID of the size in the `sizes` array
+    required: true,
+  },
+  type: {
+    type: String,
+    enum: ["Perfumes", "PerfumeWax", "ScentedCandles"],
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -16,7 +30,7 @@ const productSchema = new mongoose.Schema({
   quantity: {
     type: Number,
     required: true,
-  }
+  },
 });
 
 // Main order schema
