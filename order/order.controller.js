@@ -40,7 +40,9 @@ const createOrder = async (req, res) => {
       const ProductModel = models[type];
       if (!ProductModel) {
         // throw new Error(`Invalid product type: ${type}`);
-        return res.status(400).json({ message: `Invalid product type: ${type}` });
+        return res
+          .status(400)
+          .json({ message: `Invalid product type: ${type}` });
       }
 
       // Find the product document by its _id
@@ -51,7 +53,9 @@ const createOrder = async (req, res) => {
 
       if (!productDocument) {
         // throw new Error(`Product not found with ID: ${productId}`);
-        return res.status(404).json({ message: `ID of the product ${product.name} not found` });
+        return res
+          .status(404)
+          .json({ message: `ID of the product ${product.name} not found` });
       }
 
       // Find the specific size to update
@@ -60,12 +64,16 @@ const createOrder = async (req, res) => {
       );
       if (!size) {
         // throw new Error(`Size not found with ID: ${sizeId}`);
-        return res.status(404).json({ message: `ID of Size, ${product.size} not found for ${product.name}` });
+        return res.status(404).json({
+          message: `ID of Size, ${product.size} not found for ${product.name}`,
+        });
       }
 
       if (size.quantity < quantity) {
         // throw new Error(`Insufficient stock for ${product.name} ${product.size}`);
-        return res.status(405).json({ message: `Insufficient stock for ${product.name} ${product.size}` });
+        return res.status(405).json({
+          message: `Insufficient stock for ${product.name} ${product.size}`,
+        });
       } else {
         // Update the size quantity atomically
         const updatedProduct = await ProductModel.findOneAndUpdate(
@@ -96,6 +104,15 @@ const createOrder = async (req, res) => {
       totalBill,
       { session }
     );
+    console.log("order", order);
+    const perfumes = products.filter((product) => product.type === "Perfumes");
+    const perfumeWax = products.filter(
+      (product) => product.type === "PerfumeWax"
+    );
+    const candels = products.filter(
+      (product) => product.type === "ScentedCandles"
+    );
+
     const message = `
 Hello,
 
@@ -112,15 +129,55 @@ Order Details:
 - Total Bill: PKR ${totalBill}
 
 Products Ordered:
-${products
-  .map(
-    (product, index) =>
-      `${index + 1}. ${product.name}
+${
+  perfumes.length > 0
+    ? `Perfumes
+  ${perfumes
+    .map(
+      (product, index) => `${index + 1}. ${product.name}
    - Size: ${product.size}
    - Price: PKR ${product.price}
-   - Quantity: ${product.quantity}`
-  )
-  .join("\n")}
+   - Quantity: ${product.quantity}
+   `
+    )
+    .join("\n")}
+  `
+    : ""
+}
+
+${
+  candels.length > 0
+    ? `Scented Candles
+  ${candels
+    .map(
+      (product, index) => `${index + 1}. ${product.name}
+  - Size: ${product.size}
+  - Price: PKR ${product.price}
+  - Quantity: ${product.quantity}
+     `
+    )
+    .join("\n")}
+    `
+    : ""
+}
+
+  ${
+    perfumeWax.length > 0
+      ? `Perfume Wax
+  ${perfumeWax
+    .map(
+      (product, index) => `${index + 1}. ${product.name}
+  - Size: ${product.size}
+  - Price: PKR ${product.price}
+  - Quantity: ${product.quantity}
+       `
+    )
+    .join("\n")}
+      `
+      : ""
+  }
+
+
 
 Please process the order at your earliest convenience.
 
@@ -134,7 +191,9 @@ Your Website
     // await sendEmail("zayanirfan8@gmail.com","Order has been booked","text")
     await session.commitTransaction();
     session.endSession();
-    return res.status(200).json({ message: "Order created successfully.", order });
+    return res
+      .status(200)
+      .json({ message: "Order created successfully.", order });
   } catch (error) {
     await session.abortTransaction();
     session.endSession();
@@ -143,6 +202,9 @@ Your Website
   }
 };
 
+
+
 module.exports = {
   createOrder,
+  
 };

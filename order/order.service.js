@@ -1,4 +1,5 @@
 const Order = require("../models/Order");
+const { sendMailEnQueue } = require("../queue/sendEmailEnqueue");
 
 const createOrder = async (address,
   city,
@@ -28,6 +29,8 @@ const createOrder = async (address,
   return order
 };
 
+
+
 module.exports = {
-    createOrder
+    createOrder,
 }
