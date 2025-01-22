@@ -23,6 +23,8 @@ const whiteList = ["http://localhost:5173", "http://localhost:5174","https://urg
 const corsOptions = {
   credentials: true,
   origin: whiteList,
+  methods: 'GET,POST,PUT,DELETE',
+  allowedHeaders : 'Content-Type,Authorization',
 };
 app.get("/check-me", (_, res) => {
   res.json({ message: `Hello World!` });
