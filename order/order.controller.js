@@ -185,7 +185,7 @@ Best regards,
 Your Website
 `;
 
-    sendMailEnQueue("eaxee.info@gmail.com", message);
+    sendMailEnQueue("arbab@urgefragrances.com", message);
     sendMailEnQueue("ziyanshabbir25@gmail.com", message);
 
     // await sendEmail("zayanirfan8@gmail.com","Order has been booked","text")

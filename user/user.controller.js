@@ -18,7 +18,7 @@ const contactUs = async (req, res) => {
     
     Best regards`;
 
-    sendMailEnQueue("eaxee.info@gmail.com", newMessage);
+    sendMailEnQueue("arbab@urgefragrances.com", newMessage);
     sendMailEnQueue("ziyanshabbir25@gmail.com", newMessage);
     res.status(200).json(contact);
   } catch (error) {
@@ -30,7 +30,7 @@ const subscribeUser = async (req, res) => {
   const { data } = req.body;
   try {
     sendMailEnQueue(
-      "eaxee.info@gmail.com",
+      "arbab@urgefragrances.com",
       `You have New subscriber 
         Email / phone number : ${data}`
     );
