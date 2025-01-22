@@ -29,7 +29,7 @@ const corsOptions = {
 app.get("/check-me", (_, res) => {
   res.json({ message: `Hello World!` });
 });
-app.use(cors(corsOptions));
+app.use(cors());
 app.use("/api/perfumes",perfumeRoutes)
 app.use("/api/scented-candles",scentedCandleRoute)
 app.use("/api/perfume-wax",perfumeWaxRoute)
